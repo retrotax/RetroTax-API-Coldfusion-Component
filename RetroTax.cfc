@@ -59,7 +59,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl#/authentication" result="result" method="POST"  timeout="450"> 
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#">    
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -81,7 +81,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/authentication" result="result" method="DELETE"  timeout="450"> 
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#">    
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -102,7 +102,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees" result="result" method="POST"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="X-AUTH-TOKEN" value="#variables.authToken#"> 
             <cfhttpparam type="header" name="accept" value="application/json"> 
@@ -125,7 +125,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/companies/#arguments.companyId#/locations" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#">    
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -151,7 +151,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/companies/#companyId#/locations/#locationId#" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">     
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">     
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -181,7 +181,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees?location_id=#arguments.locationId#&status=#arguments.status#&search=#arguments.search#&page=#arguments.page#&per_page=#arguments.per_page#" result="result" method="GET"  timeout="850">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -206,7 +206,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees/#arguments.employeeId#" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -230,7 +230,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees/#arguments.employeeId#" result="result" method="DELETE"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -252,7 +252,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees/#arguments.employeeId#" result="result" method="PUT"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -276,7 +276,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees/#arguments.employeeId#/documents?status=#arguments.status#" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -305,7 +305,7 @@
       <cftry>
          <cffile action="readBinary" file="#arguments.filePath#" variable="binaryObject">
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees/#arguments.employeeId#/documents" result="result" method="POST"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="accept" value="application/json">               
             <cfhttpparam type="header" name="X-AUTH-TOKEN" value="#variables.authToken#"> 
@@ -328,7 +328,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/states" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -353,7 +353,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/states/#arguments.stateCode#/counties" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="X-AUTH-TOKEN" value="#variables.authToken#"> 
             <cfhttpparam type="header" name="accept" value="application/json"> 
@@ -377,7 +377,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/companies" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -402,7 +402,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/companies/#arguments.companyId#" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -423,7 +423,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/occupations" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="X-AUTH-TOKEN" value="#variables.authToken#"> 
             <cfhttpparam type="header" name="accept" value="application/json"> 
@@ -444,7 +444,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/branches" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="X-AUTH-TOKEN" value="#variables.authToken#"> 
             <cfhttpparam type="header" name="accept" value="application/json"> 
@@ -468,7 +468,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees/#arguments.employeeId#/esign" result="result" method="PUT"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -495,7 +495,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees/#arguments.employeeId#/pay_entries/#arguments.payEntry#" result="result" method="PUT"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -518,7 +518,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees/#arguments.employeeId#/pay_entries/#arguments.payEntry#" result="result" method="DELETE"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -539,7 +539,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees/#arguments.employeeId#/pay_entries/" result="result" method="GET"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
@@ -564,7 +564,7 @@
       <cfset local.results.error = "" />
       <cftry>
          <cfhttp url="#variables.apiUrl##variables.apiVersion#/employees/#arguments.employeeId#/pay_entries" result="result" method="POST"  timeout="450">    
-            <cfhttpparam type="header" name="X-VERSION" value="#variables.version#">    
+            <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#"> 
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
