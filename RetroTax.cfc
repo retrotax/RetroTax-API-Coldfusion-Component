@@ -58,14 +58,12 @@
       <cfset local.results = {} />
       <cfset local.results.error = "" />
       <cftry>
-         <cfhttp url="#variables.apiUrl#/authentication" result="result" method="POST"  timeout="450"> 
+         <cfhttp url="#variables.apiUrl##variables.apiVersion#/authentication" result="result" method="POST"  timeout="450"> 
             <cfhttpparam type="header" name="X-VERSION" value="#variables.apiVersion#">    
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#">    
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
-            <cfhttpparam type="header" name="X-AUTH-TOKEN" value="#variables.authToken#"> 
-            <cfhttpparam type="formfield" name="username" value="#variables.username#"> 
-            <cfhttpparam type="formfield" name="password" value="#variables.password#"> 
+            <cfhttpparam type='body' value='{"username":"#variables.username#","password":"#variables.password#"}'> 
          </cfhttp> 
          <cfset local.results = result />
          <cfcatch type="any">
@@ -85,7 +83,6 @@
             <cfhttpparam type="header" name="X-API-KEY" value="#variables.key#">    
             <cfhttpparam type="header" name="Content-Type" value="application/json" />
             <cfhttpparam type="header" name="accept" value="application/json">               
-            <cfhttpparam type="header" name="X-AUTH-TOKEN" value="#variables.authToken#"> 
          </cfhttp> 
          <cfset local.results = result />
          <cfcatch type="any">
