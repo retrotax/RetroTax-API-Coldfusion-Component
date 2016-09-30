@@ -856,7 +856,7 @@ return {
             if(structkeyexists(params,"LASTNAME")){employee_info['last_name']=params['LASTNAME'];}
             if(structkeyexists(params,"ZIP")){employee_info['zip']=params['ZIP'];}
             if(structkeyexists(params,"STATE")){employee_info['state']=params['STATE'];}
-            if(structkeyexists(params,"SSN")){employee_info['ssn']=params['SSN'];}
+            if(structkeyexists(params,"SSN")){employee_info['ssn']=ReReplaceNoCase(params['SSN'],"[^0-9,]","","ALL");}
             if(structkeyexists(params,"REHIRE")){employee_info['rehire']=TrueFalseFormat(params['REHIRE']);}
             if(structkeyexists(params,"MIDDLEINITIAL")){employee_info['middle_initial']=params['MIDDLEINITIAL'];}
             if(structkeyexists(params,"FIRSTNAME")){employee_info['first_name']=params['FIRSTNAME'];}
@@ -1003,5 +1003,13 @@ return {
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
+   <cfscript>
+      //source: http://cflib.org/udf/TrueFalseFormat
+      function TrueFalseFormat(exp){
+        if (exp) return True;
+        return False;
+      }
+   </cfscript>
 </cfcomponent>
 
