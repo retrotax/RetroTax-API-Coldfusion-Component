@@ -583,10 +583,10 @@
          employee_info['last_name']='';
          employee_info['suffix']='';
          employee_info['dob']='';
-         employee_info['last_name']='';
          employee_info['zip']='';
          employee_info['city']='';
          employee_info['state']='';
+         employee_info['county']='';
          employee_info['address_line_1']='';
          employee_info['address_line_2']='';
          employee_info['location_id']='';
@@ -623,13 +623,13 @@
 
     <cffunction name="getBenefitsRecipientInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
-         var benefits_recipient_info={};
-         benefits_recipient_info['name']='';
-         benefits_recipient_info['relationship']='';
-         benefits_recipient_info['county_received']='';
-         benefits_recipient_info['state_received']='';
-         benefits_recipient_info['city_received']='';
-         return benefits_recipient_info;
+         var foodstamps_recipient_info={};
+         foodstamps_recipient_info['name']='';
+         foodstamps_recipient_info['relationship']='';
+         foodstamps_recipient_info['county_received']='';
+         foodstamps_recipient_info['state_received']='';
+         foodstamps_recipient_info['city_received']='';
+         return foodstamps_recipient_info;
       </cfscript>   
    </cffunction>
 
@@ -647,9 +647,9 @@
     <cffunction name="getUnemploymentInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
          var unemployment_info={};
-         unemployment_info['compensated_start_date']='';
+         unemployment_info['compensation_start_date']='';
          unemployment_info['compensated']='';
-         unemployment_info['compensated_stop_date']='';
+         unemployment_info['compensation_stop_date']='';
          unemployment_info['unemployment_stop_date']='';
          unemployment_info['unemployment_start_date']='';
          return unemployment_info;
@@ -665,6 +665,8 @@
          felon_info['parole_officer_name']='';
          felon_info['is_state_conviction']='';
          felon_info['release_date']='';
+         felon_info['felony_state']='';
+         felon_info['felony_county']='';
          return felon_info;
       </cfscript>   
    </cffunction>
@@ -678,8 +680,8 @@
          voc_rehab_info['phone']='';
          voc_rehab_info['city']='';
          voc_rehab_info['state']='';
-         voc_rehab_info['address_1']='';
-         voc_rehab_info['address_2']='';
+         voc_rehab_info['address_line_1']='';
+         voc_rehab_info['address_line_2']='';
          voc_rehab_info['state']='';
          voc_rehab_info['dept_va']='';
          voc_rehab_info['county']='';
@@ -689,7 +691,7 @@
 
    <cffunction name="getQuestionnaireStruct" access="public" output="false" returntype="struct" hint="">
       <cfargument name="ca_wia" type="boolean" required="false" default=false/>
-      <cfargument name="scfib" type="boolean" required="false" default=false/>
+      <cfargument name="sc_fib" type="boolean" required="false" default=false/>
       <cfargument name="ca_farmer" type="boolean" required="false" default=false/>
       <cfargument name="cdib" type="boolean" required="false" default=false/>
       <cfargument name="veteran" type="boolean" required="false" default=false/>
@@ -706,7 +708,7 @@
       <cfscript>
          var questionnaire={};
          questionnaire['ca_wia']=arguments.ca_wia;
-         questionnaire['scfib']=arguments.scfib;
+         questionnaire['sc_fib']=arguments.sc_fib;
          questionnaire['unemployed']=arguments.unemployed;
          questionnaire['ca_farmer']=arguments.ca_farmer;
          questionnaire['cdib']=arguments.cdib;
@@ -728,11 +730,11 @@
          var rt={};
          rt['hiring_manager_info']=getHiringManagerInfoStruct();
          rt['employee_info']=getEmployeeInfoStruct();
-         rt['benefits_recipient_info']=getBenefitsRecipientInfoStruct();
+         rt['foodstamps_recipient_info']=getBenefitsRecipientInfoStruct();
          rt['veteran_info']=getVeteranInfoStruct();
          rt['unemployment_info']=getUnemploymentInfoStruct();
          rt['felon_info']=getFelonInfoStruct();
-         rt['benefits_recipient_info']=getBenefitsRecipientInfoStruct();
+         rt['foodstamps_recipient_info']=getBenefitsRecipientInfoStruct();
          rt['afdc_recipient_info']=getAfdcRecipientInfoStruct();
          rt['voc_rehab_info']=getVocRehabInfoStruct();
          rt['questionnaire']=getQuestionnaireStruct();
@@ -755,9 +757,10 @@ return {
       "ssn": ssn,
       "dob": "1987-01-01",
       "rehire": false,
-      "location_id": 5463
+      "location_id": 5463,
+      "is_applicant":false
    },
-   "benefits_recipient_info": {
+   "foodstamps_recipient_info": {
       "name": "foo",
       "relationship": "foo",
       "county_received": "foo",
@@ -771,9 +774,9 @@ return {
       "service_stop": "2000-02-01"
    },
    "unemployment_info": {
-      "compensated_start_date": "2000-01-01",
+      "compensation_start_date": "2000-01-01",
       "compensated": true,
-      "compensated_stop_date": "2000-02-01",
+      "compensation_stop_date": "2000-02-01",
       "unemployment_start_date": "2001-01-01",
       "unemployment_stop_date": "2002-01-01"
    },
@@ -783,7 +786,10 @@ return {
       "parole_officer_phone": "foo",
       "is_state_conviction": true,
       "parole_officer_name": "foo",
-      "release_date": "2011-01-01"
+      "release_date": "2011-01-01",
+      "felony_state":"IN",
+      "felony_county":"Marion"
+
    },
    "voc_rehab_info": {
       "agency_name": "foo",
@@ -800,7 +806,7 @@ return {
    },
    "questionnaire": {
       "ca_wia": false,
-      "scfib": false,
+      "sc_fib": false,
       "unemployed": false,
       "ca_farmer": false,
       "cdib": false,
@@ -839,7 +845,7 @@ return {
             voc_rehab_info={};
             unemployment_info={};
             veteran_info={};
-            benefits_recipient_info={};
+            foodstamps_recipient_info={};
             esign={};
             afdc_recipient_info={}; 
 
@@ -858,7 +864,6 @@ return {
             if(structkeyexists(params,"STATE")){employee_info['state']=params['STATE'];}
             if(structkeyexists(params,"SSN")){employee_info['ssn']=ReReplaceNoCase(params['SSN'],"[^0-9,]","","ALL");}
             if(structkeyexists(params,"REHIRE")){employee_info['rehire']=TrueFalseFormat(params['REHIRE']);}
-            if(structkeyexists(params,"MIDDLEINITIAL")){employee_info['middle_initial']=params['MIDDLEINITIAL'];}
             if(structkeyexists(params,"FIRSTNAME")){employee_info['first_name']=params['FIRSTNAME'];}
             if(structkeyexists(params,"DOB")){employee_info['dob']=DateFormat(params['DOB'],"yyyy/mm/dd");}
             if(structkeyexists(params,"CITY")){employee_info['city']=params['CITY'];}
@@ -881,7 +886,7 @@ return {
             if(structkeyexists(params,"UNEMPLOYED")){questionnaire['unemployed']=TrueFalseFormat(params['UNEMPLOYED']);}
             if(structkeyexists(params,"CAFARMER")){questionnaire['ca_farmer']=TrueFalseFormat(params['CAFARMER']);}
             if(structkeyexists(params,"CAWIA")){questionnaire['ca_wia']=TrueFalseFormat(params['CAWIA']);}
-            if(structkeyexists(params,"SCFIB")){questionnaire['scfib']=TrueFalseFormat(params['SCFIB']);}
+            if(structkeyexists(params,"SCFIB")){questionnaire['sc_fib']=TrueFalseFormat(params['SCFIB']);}
             if(structkeyexists(params,"VETERAN")){questionnaire['veteran']=TrueFalseFormat(params['VETERAN']);}
             if(structkeyexists(params,"CACALWORKS")){questionnaire['ca_calworks']=TrueFalseFormat(params['CACALWORKS']);}
 
@@ -915,11 +920,11 @@ return {
 
             /* RECIPIENT */
             if(structkeyexists(params,"FOODSTAMPS") && params.foodstamps){
-               if(structkeyexists(params,"RECIPIENT_CITYRECEIVED")){benefits_recipient_info['city_received']=params['RECIPIENT_CITYRECEIVED'];}
-               if(structkeyexists(params,"RECIPIENT_COUNTYRECEIVED")){benefits_recipient_info['county_received']=params['RECIPIENT_COUNTYRECEIVED'];}
-               if(structkeyexists(params,"RECIPIENT_NAME")){benefits_recipient_info['name']=params['RECIPIENT_NAME'];}
-               if(structkeyexists(params,"RECIPIENT_RELATIONSHIP")){benefits_recipient_info['relationship']=params['RECIPIENT_RELATIONSHIP'];}
-               if(structkeyexists(params,"RECIPIENT_STATERECEIVED")){benefits_recipient_info['state_received']=params['RECIPIENT_STATERECEIVED'];}
+               if(structkeyexists(params,"RECIPIENT_CITYRECEIVED")){foodstamps_recipient_info['city_received']=params['RECIPIENT_CITYRECEIVED'];}
+               if(structkeyexists(params,"RECIPIENT_COUNTYRECEIVED")){foodstamps_recipient_info['county_received']=params['RECIPIENT_COUNTYRECEIVED'];}
+               if(structkeyexists(params,"RECIPIENT_NAME")){foodstamps_recipient_info['name']=params['RECIPIENT_NAME'];}
+               if(structkeyexists(params,"RECIPIENT_RELATIONSHIP")){foodstamps_recipient_info['relationship']=params['RECIPIENT_RELATIONSHIP'];}
+               if(structkeyexists(params,"RECIPIENT_STATERECEIVED")){foodstamps_recipient_info['state_received']=params['RECIPIENT_STATERECEIVED'];}
             }
             /* FELON */
             if(structkeyexists(params,"FELONINFO_DATECONVICTION")){felon_info['conviction_date']=DateFormat(params['FELONINFO_DATECONVICTION'],"yyyy/mm/dd");}
@@ -928,6 +933,8 @@ return {
             if(structkeyexists(params,"FELONINFO_ISSTATECONVICTION")){felon_info['is_state_conviction']=TrueFalseFormat(params['FELONINFO_ISSTATECONVICTION']);}
             if(structkeyexists(params,"FELONINFO_PAROLEOFFICER")){felon_info['parole_officer']=params['FELONINFO_PAROLEOFFICER'];}
             if(structkeyexists(params,"FELONINFO_PAROLEOFFICERPHONE")){felon_info['parole_officer_phone']=params['FELONINFO_PAROLEOFFICERPHONE'];}
+            if(structkeyexists(params,"FELONINFO_STATEID")){felon_info['felony_state']=params['FELONINFO_STATEID'];}
+            if(structkeyexists(params,"FELONINFO_COUNTYID")){felon_info['felony_county']=params['FELONINFO_COUNTYID'];}
 
             /*Unemployed*/
             if(structkeyexists(params,"UNEMPLOYEDSTART")){unemployment_info['unemployment_start_date']=DateFormat(params['UNEMPLOYEDSTART'],"yyyy/mm/dd");}
@@ -987,7 +994,7 @@ return {
             results['hiring_manager_info']=hiring_manager_info;
             results['employee_info']=employee_info;
             results['questionnaire']=questionnaire;
-            results['benefits_recipient_info']=benefits_recipient_info;
+            results['foodstamps_recipient_info']=foodstamps_recipient_info;
             results['esign']=esign;
             results['voc_rehab_info']=voc_rehab_info;
             results['veteran_info']=veteran_info;
