@@ -693,7 +693,7 @@
       </cfscript>   
    </cffunction>
 
-   <cffunction name="getHiringManagerStruct" access="public" output="false" returntype="struct" hint="">
+   <cffunction name="getSignatureStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
          var e_signatures={};
          var hm_signature={};
@@ -759,7 +759,7 @@
          rt['afdc_recipient_info']=getAfdcRecipientInfoStruct();
          rt['voc_rehab_info']=getVocRehabInfoStruct();
          rt['questionnaire']=getQuestionnaireStruct();
-         rt['e_signatures']=getHiringManagerStruct();
+         rt['e_signatures']=getSignatureStruct();
          return rt;
       </cfscript>   
    </cffunction>
