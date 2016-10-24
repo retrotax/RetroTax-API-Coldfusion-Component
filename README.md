@@ -167,7 +167,9 @@ var employeeStruct=RetroTax.getRetroTaxStruct();
 		"parole_officer_name": "",
 		"conviction_date": "",
 		"is_federal_conviction": "",
-		"parole_officer_phone": ""
+		"parole_officer_phone": "",
+		"felony_state": "",
+		"felony_county": ""
 	},
 	"employee_info": {
 		"location_id": "",
@@ -238,6 +240,18 @@ var employeeStruct=RetroTax.getRetroTaxStruct();
 		"disabled": "",
 		"branch": "Army",
 		"service_start": ""
+	},
+	"e_signatures": {
+		"hm_signature": {
+			"esign":true,
+			"authorization":true,
+			"title":"",
+			"name":""
+		},
+		"emp_signature": {
+			"esign":true,
+			"authorization":true
+		}
 	}
 }
 ```
