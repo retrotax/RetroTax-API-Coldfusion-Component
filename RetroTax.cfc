@@ -8,6 +8,8 @@
       <cfargument name="key" type="string" required="true" default=""/>
       <cfargument name="defaultOccupationId" type="string" required="false" default=""/>
       <cfargument name="defaultStartingWage" type="string" required="false" default=""/>
+      <cfargument name="hiringManagerName" type="string" required="false" default=""/>
+      <cfargument name="hiringManagerTitle" type="string" required="false" default="Hiring Manager"/>
       <cfargument name="authToken" type="string" required="false" default=""/>
       <cfscript>
          variables.applicationName     = "RetroTax";
@@ -20,6 +22,8 @@
          variables.authToken           = arguments.authToken;
          variables.defaultStartingWage = arguments.defaultStartingWage;
          variables.defaultOccupationId = arguments.defaultOccupationId;
+         variables.hiringManagerName   = arguments.hiringManagerName;
+         variables.hiringManagerTitle  = arguments.hiringManagerTitle;
       </cfscript>
       <cfreturn this />
    </cffunction>
@@ -599,12 +603,12 @@
     <cffunction name="getHiringManagerInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
          var hiring_manager_info={};
-         hiring_manager_info['occupation_id']='';
-         hiring_manager_info['dojo']=DateFormat(now(),"yyyy/mm/dd");
-         hiring_manager_info['doh']=DateFormat(now(),"yyyy/mm/dd");
-         hiring_manager_info['dsw']=DateFormat(now(),"yyyy/mm/dd");
-         hiring_manager_info['dgi']=DateFormat(now(),"yyyy/mm/dd");
-         hiring_manager_info['starting_wage']='';
+         hiring_manager_info['occupation_id']=variables.defaultOccupationId;
+         hiring_manager_info['dojo']=DateFormat(now(),"yyyy-mm-dd");
+         hiring_manager_info['doh']=DateFormat(now(),"yyyy-mm-dd");
+         hiring_manager_info['dsw']=DateFormat(now(),"yyyy-mm-dd");
+         hiring_manager_info['dgi']=DateFormat(now(),"yyyy-mm-dd");
+         hiring_manager_info['starting_wage']=variables.defaultStartingWage;
          return hiring_manager_info;
       </cfscript>   
    </cffunction>
@@ -689,6 +693,23 @@
       </cfscript>   
    </cffunction>
 
+   <cffunction name="getHiringManagerStruct" access="public" output="false" returntype="struct" hint="">
+      <cfscript>
+         var e_signatures={};
+         var hm_signature={};
+         var emp_signature={};
+         hm_signature['name']=variables.hiringManagerName;
+         hm_signature['title']=variables.hiringManagerTitle;
+         hm_signature['esign']=true;
+         hm_signature['authorization']=true;
+         emp_signature['esign']=true;
+         emp_signature['authorization']=true;
+         e_signatures.hm_signature=hm_signature;
+         e_signatures.emp_signature=emp_signature;
+         return e_signatures;
+      </cfscript>   
+   </cffunction>
+
    <cffunction name="getQuestionnaireStruct" access="public" output="false" returntype="struct" hint="">
       <cfargument name="ca_wia" type="boolean" required="false" default=false/>
       <cfargument name="sc_fib" type="boolean" required="false" default=false/>
@@ -738,6 +759,7 @@
          rt['afdc_recipient_info']=getAfdcRecipientInfoStruct();
          rt['voc_rehab_info']=getVocRehabInfoStruct();
          rt['questionnaire']=getQuestionnaireStruct();
+         rt['e_signatures']=getHiringManagerStruct();
          return rt;
       </cfscript>   
    </cffunction>
@@ -751,14 +773,14 @@ return {
       "first_name": "ColdFusion",
       "last_name": "Test",
       "address_line_1": "850 N Miami Ave",
+      "address_line_2": "",
       "city": "Miami",
       "state": "FL",
       "zip": "33136",
       "ssn": ssn,
       "dob": "1987-01-01",
       "rehire": false,
-      "location_id": 5463,
-      "is_applicant":false
+      "location_id": 5463
    },
    "foodstamps_recipient_info": {
       "name": "foo",
@@ -827,7 +849,19 @@ return {
       "occupation_id": occupationId,
       "dgi": "2016-04-28",
       "starting_wage": "14.25"
-   }
+   },
+   "e_signatures": {
+        "hm_signature": {
+          "name": "John Doe",
+          "title": "Hiring Manager",
+          "esign": true,
+          "authorization": true
+        },
+        "emp_signature": {
+          "esign": true,
+          "authorization": true
+        }
+  }
 };
 </cfscript>
 </cffunction>
@@ -851,11 +885,11 @@ return {
 
             /*HIRING MANAGER SECTION */
             if(structkeyexists(params,"OCCUPATIONID")){hiring_manager_info['occupation_id']=params['OCCUPATIONID'];}
-            if(structkeyexists(params,"DGI")){hiring_manager_info['dgi']=DateFormat(params['DGI'],"yyyy/mm/dd");}
-            if(structkeyexists(params,"DOB")){hiring_manager_info['dob']=DateFormat(params['DOB'],"yyyy/mm/dd");}
-            if(structkeyexists(params,"DOH")){hiring_manager_info['doh']=DateFormat(params['DOH'],"yyyy/mm/dd");}
-            if(structkeyexists(params,"DOJO")){hiring_manager_info['dojo']=DateFormat(params['DOJO'],"yyyy/mm/dd");}
-            if(structkeyexists(params,"DSW")){hiring_manager_info['dsw']=DateFormat(params['DSW'],"yyyy/mm/dd");}
+            if(structkeyexists(params,"DGI")){hiring_manager_info['dgi']=DateFormat(params['DGI'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"DOB")){hiring_manager_info['dob']=DateFormat(params['DOB'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"DOH")){hiring_manager_info['doh']=DateFormat(params['DOH'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"DOJO")){hiring_manager_info['dojo']=DateFormat(params['DOJO'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"DSW")){hiring_manager_info['dsw']=DateFormat(params['DSW'],"yyyy-mm-dd");}
             if(structkeyexists(params,"STARTINGWAGE")){hiring_manager_info['starting_wage']=params['STARTINGWAGE'];}
 
             /*Employee Info */
@@ -865,7 +899,7 @@ return {
             if(structkeyexists(params,"SSN")){employee_info['ssn']=ReReplaceNoCase(params['SSN'],"[^0-9,]","","ALL");}
             if(structkeyexists(params,"REHIRE")){employee_info['rehire']=TrueFalseFormat(params['REHIRE']);}
             if(structkeyexists(params,"FIRSTNAME")){employee_info['first_name']=params['FIRSTNAME'];}
-            if(structkeyexists(params,"DOB")){employee_info['dob']=DateFormat(params['DOB'],"yyyy/mm/dd");}
+            if(structkeyexists(params,"DOB")){employee_info['dob']=DateFormat(params['DOB'],"yyyy-mm-dd");}
             if(structkeyexists(params,"CITY")){employee_info['city']=params['CITY'];}
             if(structkeyexists(params,"ADDRESS")){employee_info['address_line_1']=params['ADDRESS'];}
             if(structkeyexists(params,"ADDRESS2")){employee_info['address_line_2']=params['ADDRESS2'];}
@@ -927,8 +961,8 @@ return {
                if(structkeyexists(params,"RECIPIENT_STATERECEIVED")){foodstamps_recipient_info['state_received']=params['RECIPIENT_STATERECEIVED'];}
             }
             /* FELON */
-            if(structkeyexists(params,"FELONINFO_DATECONVICTION")){felon_info['conviction_date']=DateFormat(params['FELONINFO_DATECONVICTION'],"yyyy/mm/dd");}
-            if(structkeyexists(params,"FELONINFO_DATERELEASE")){felon_info['release_date']=DateFormat(params['FELONINFO_DATERELEASE'],"yyyy/mm/dd");}
+            if(structkeyexists(params,"FELONINFO_DATECONVICTION")){felon_info['conviction_date']=DateFormat(params['FELONINFO_DATECONVICTION'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"FELONINFO_DATERELEASE")){felon_info['release_date']=DateFormat(params['FELONINFO_DATERELEASE'],"yyyy-mm-dd");}
             if(structkeyexists(params,"FELONINFO_ISFEDERALCONVICTION")){felon_info['is_federal_conviction']=TrueFalseFormat(params['FELONINFO_ISFEDERALCONVICTION']);}
             if(structkeyexists(params,"FELONINFO_ISSTATECONVICTION")){felon_info['is_state_conviction']=TrueFalseFormat(params['FELONINFO_ISSTATECONVICTION']);}
             if(structkeyexists(params,"FELONINFO_PAROLEOFFICER")){felon_info['parole_officer']=params['FELONINFO_PAROLEOFFICER'];}
@@ -937,10 +971,10 @@ return {
             if(structkeyexists(params,"FELONINFO_COUNTYID")){felon_info['felony_county']=params['FELONINFO_COUNTYID'];}
 
             /*Unemployed*/
-            if(structkeyexists(params,"UNEMPLOYEDSTART")){unemployment_info['unemployment_start_date']=DateFormat(params['UNEMPLOYEDSTART'],"yyyy/mm/dd");}
-            if(structkeyexists(params,"UNEMPLOYEDSTOP")){unemployment_info['unemployment_stop_date']=DateFormat(params['UNEMPLOYEDSTOP'],"yyyy/mm/dd");}
-            if(structkeyexists(params,"COMPENSATEDSTART")){unemployment_info['compensation_start_date']=DateFormat(params['COMPENSATEDSTART'],"yyyy/mm/dd");}
-            if(structkeyexists(params,"COMPENSATEDSTOP")){unemployment_info['compensation_stop_date']=DateFormat(params['COMPENSATEDSTOP'],"yyyy/mm/dd");}
+            if(structkeyexists(params,"UNEMPLOYEDSTART")){unemployment_info['unemployment_start_date']=DateFormat(params['UNEMPLOYEDSTART'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"UNEMPLOYEDSTOP")){unemployment_info['unemployment_stop_date']=DateFormat(params['UNEMPLOYEDSTOP'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"COMPENSATEDSTART")){unemployment_info['compensation_start_date']=DateFormat(params['COMPENSATEDSTART'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"COMPENSATEDSTOP")){unemployment_info['compensation_stop_date']=DateFormat(params['COMPENSATEDSTOP'],"yyyy-mm-dd");}
             if(structkeyexists(params,"COMPENSATED")){unemployment_info['compensatated']=TrueFalseFormat(params['COMPENSATED']);}
          
             /*Veteran*/
@@ -986,8 +1020,8 @@ return {
                      veteran_info['branch']="Army";
                }
             }
-            if(structkeyexists(params,"VETERANINFO_SERVICESTART")){veteran_info['service_start']=DateFormat(params['VETERANINFO_SERVICESTART'],"yyyy/mm/dd");}
-            if(structkeyexists(params,"VETERANINFO_SERVICESTOP")){veteran_info['service_stop']=DateFormat(params['VETERANINFO_SERVICESTOP'],"yyyy/mm/dd");}
+            if(structkeyexists(params,"VETERANINFO_SERVICESTART")){veteran_info['service_start']=DateFormat(params['VETERANINFO_SERVICESTART'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"VETERANINFO_SERVICESTOP")){veteran_info['service_stop']=DateFormat(params['VETERANINFO_SERVICESTOP'],"yyyy-mm-dd");}
             if(structkeyexists(params,"DISABLED")){veteran_info['disabled']=TrueFalseFormat(params['DISABLED']);}
             
             var results={};
