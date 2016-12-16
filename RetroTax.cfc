@@ -1048,8 +1048,8 @@ return {
    <cfscript>
       //source: http://cflib.org/udf/TrueFalseFormat
       function TrueFalseFormat(exp){
-        if (exp) return True;
-        return False;
+        if (exp) return true;
+        return false;
       }
    </cfscript>
 </cfcomponent>
