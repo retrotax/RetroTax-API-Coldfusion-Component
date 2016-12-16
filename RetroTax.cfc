@@ -1,5 +1,6 @@
 <cfcomponent displayname="RetroTax" output="false" accessors="true">
 
+
    <cffunction name="init" access="public" output="false" returntype="RetroTax">
       <cfargument name="username" type="string" required="false" default=""/>
       <cfargument name="password" type="string" required="false" default=""/>
@@ -27,6 +28,7 @@
       </cfscript>
       <cfreturn this />
    </cffunction>
+
 
    <cffunction name="setCredentials" access="public" output="false" returntype="any" hint="Sets values for credential variables needed to send a signin request. Only necessary if no arguments were supplied when initializing the RetroTax component.">
       <cfargument name="username" type="string" required="false" />
@@ -57,6 +59,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
    <cffunction name="signIn" access="public" output="false" returntype="any" hint="Returns an Authorization Token to be used for API calls.">
       <cfset local = {} />
       <cfset local.results = {} />
@@ -77,6 +80,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
    <cffunction name="signOut" access="public" output="false" returntype="any" hint="Deletes this user's oauthToken from the RetroTax API. A sign in request will be required before making any more API calls.">
       <cfset local = {} />
       <cfset local.results = {} />
@@ -95,6 +99,7 @@
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
 
    <cffunction name="postEmployee" access="public" output="false" returntype="any" hint="Save an employee record">
       <cfargument name="params" type="string" required="true" />
@@ -117,6 +122,7 @@
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
 
    <cffunction name="getLocations" access="public" output="false" returntype="any" hint="Returns locations by their company ID" charset="utf-8">
       <cfargument name="companyId" type="string" required="true"/>
@@ -143,6 +149,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
   <cffunction name="getLocation" access="public" output="false" returntype="any" hint="Returns location by its company ID" charset="utf-8">
       <cfargument name="companyId" type="string" required="true" />
       <cfargument name="locationId" type="string" required="true" />
@@ -168,6 +175,7 @@
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
 
    <cffunction name="getEmployees" access="public" output="false" returntype="any" hint="Returns employees" charset="utf-8">
       <cfargument name="locationId" type="string" required="false" default=""/>
@@ -199,6 +207,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
    <cffunction name="getEmployee" access="public" output="false" returntype="any" hint="Returns employee information by its ID">
       <cfargument name="employeeId" type="string" required="true" />
       <cfargument name="flushCache" type="boolean" required="false" default="false"/>
@@ -224,6 +233,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
   <cffunction name="deleteEmployee" access="public" output="false" returntype="any" hint="Deletes an employee by its ID">
       <cfargument name="employeeId" type="string" required="true" />
       <cfset local = {} />
@@ -244,6 +254,7 @@
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
 
   <cffunction name="updateEmployee" access="public" output="false" returntype="any" hint="Updates an employee by its ID">
       <cfargument name="employeeId" type="string" required="true" />
@@ -267,6 +278,7 @@
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
 
   <cffunction name="getDocuments" access="public" output="false" returntype="any" hint="Gets employee's documents by its ID">
       <cfargument name="employeeId" type="string" required="true" />
@@ -293,6 +305,8 @@
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
+
 
 
   <cffunction name="postDocuments" access="public" output="false" returntype="any" hint="Inserts employee's documents" multipart="yes">
@@ -322,6 +336,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
    <cffunction name="getStates" access="public" output="false" returntype="any" hint="Returns a list of all states and territories and their two letter abbreviations.">
       <cfargument name="flushCache" type="boolean" required="false" default="false"/>
       <cfset local = {} />
@@ -345,6 +360,7 @@
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
 
    <cffunction name="getCounties" access="public" output="false" returntype="any" hint="Returns a list of counties by two letter state abbreviation.">
       <cfargument name="stateCode" type="string" required="true"/>
@@ -371,6 +387,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
    <cffunction name="getCompanies" access="public" output="false" returntype="any" hint="Returns a list of companies related to the user">
       <cfargument name="flushCache" type="boolean" required="false" default="false"/>
       <cfset local = {} />
@@ -395,6 +412,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
    <cffunction name="getCompany" access="public" output="false" returntype="any" hint="Returns a company by its ID">
       <cfargument name="companyId" type="string" required="true" />
       <cfargument name="flushCache" type="boolean" required="false" default="false"/>
@@ -417,6 +435,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
    <cffunction name="getOccupations" access="public" output="false" returntype="any" hint="Returns occupations">
       <cfargument name="flushCache" type="boolean" required="false" default="false"/>
       <cfset local = {} />
@@ -438,6 +457,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
   <cffunction name="getBranches" access="public" output="false" returntype="any" hint="Returns branches">
       <cfargument name="flushCache" type="boolean" required="false" default="false"/>
       <cfset local = {} />
@@ -458,6 +478,7 @@
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
 
   <cffunction name="eSign" access="public" output="false" returntype="any" hint="Esigns an employee record">
       <cfargument name="employeeId" type="string" required="true" />
@@ -483,6 +504,7 @@
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
 
    <cffunction name="updatePayEntry" access="public" output="false" returntype="any" hint="Updates payroll record">
       <cfargument name="employeeId" type="string" required="true" />
@@ -511,6 +533,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
    <cffunction name="deletePayEntry" access="public" output="false" returntype="any" hint="Deletes payroll record">
       <cfargument name="employeeId" type="string" required="true" />
       <cfargument name="payEntry" type="string" required="true" />
@@ -533,6 +556,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
    <cffunction name="getPayEntries" access="public" output="false" returntype="any" hint="Get payroll entries">
       <cfargument name="employeeId" type="string" required="true" />
       <cfset local = {} />
@@ -553,6 +577,7 @@
       </cftry>
       <cfreturn local.results />
    </cffunction>
+
 
    <cffunction name="postPayEntry" access="public" output="false" returntype="any" hint="Creates a payroll entry for an employee">
       <cfargument name="employeeId" type="string" required="true" />
@@ -580,6 +605,7 @@
       <cfreturn local.results />
    </cffunction>
 
+
    <cffunction name="getEmployeeInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
          var employee_info={};
@@ -600,6 +626,7 @@
       </cfscript>   
    </cffunction>
 
+
     <cffunction name="getHiringManagerInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
          var hiring_manager_info={};
@@ -613,6 +640,7 @@
       </cfscript>   
    </cffunction>
 
+
     <cffunction name="getAfdcRecipientInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
          var afdc_recipient_info={};
@@ -624,6 +652,7 @@
          return afdc_recipient_info;
       </cfscript>   
    </cffunction>
+
 
     <cffunction name="getBenefitsRecipientInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
@@ -637,10 +666,11 @@
       </cfscript>   
    </cffunction>
 
+
     <cffunction name="getVeteranInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
          var veteran_info={};
-         veteran_info['disabled']='';
+         veteran_info['disabled']='false';
          veteran_info['service_start']='';
          veteran_info['service_stop']='';
          veteran_info['branch']='Army';
@@ -648,17 +678,19 @@
       </cfscript>   
    </cffunction>
 
+
     <cffunction name="getUnemploymentInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
          var unemployment_info={};
          unemployment_info['compensation_start_date']='';
-         unemployment_info['compensated']='';
+         unemployment_info['compensated']='false';
          unemployment_info['compensation_stop_date']='';
          unemployment_info['unemployment_stop_date']='';
          unemployment_info['unemployment_start_date']='';
          return unemployment_info;
       </cfscript>   
    </cffunction>
+
 
    <cffunction name="getFelonInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
@@ -674,6 +706,7 @@
          return felon_info;
       </cfscript>   
    </cffunction>
+
 
    <cffunction name="getVocRehabInfoStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
@@ -693,6 +726,7 @@
       </cfscript>   
    </cffunction>
 
+
    <cffunction name="getSignatureStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
          var e_signatures={};
@@ -704,11 +738,12 @@
          hm_signature['authorization']=true;
          emp_signature['esign']=true;
          emp_signature['authorization']=true;
-         e_signatures.hm_signature=hm_signature;
-         e_signatures.emp_signature=emp_signature;
+         e_signatures['hm_signature']=hm_signature;
+         e_signatures['emp_signature']=emp_signature;
          return e_signatures;
       </cfscript>   
    </cffunction>
+
 
    <cffunction name="getQuestionnaireStruct" access="public" output="false" returntype="struct" hint="">
       <cfargument name="ca_wia" type="boolean" required="false" default=false/>
@@ -725,6 +760,7 @@
       <cfargument name="ca_misdemeanor" type="boolean" required="false" default=false/>
       <cfargument name="ca_foster" type="boolean" required="false" default=false/>
       <cfargument name="unemployed" type="boolean" required="false" default=false/>
+
 
       <cfscript>
          var questionnaire={};
@@ -746,6 +782,7 @@
       </cfscript>   
    </cffunction>
 
+
     <cffunction name="getRetroTaxStruct" access="public" output="false" returntype="struct" hint="">
       <cfscript>
          var rt={};
@@ -763,6 +800,7 @@
          return rt;
       </cfscript>   
    </cffunction>
+
 
    <cffunction name="createTestEmployee" access="public" output="false" returntype="any" hint="Returns test employee">
       <cfscript>
@@ -811,6 +849,7 @@ return {
       "release_date": "2011-01-01",
       "felony_state":"IN",
       "felony_county":"Marion"
+
 
    },
    "voc_rehab_info": {
@@ -866,6 +905,7 @@ return {
 </cfscript>
 </cffunction>
 
+
   <cffunction name="mapParameters" access="public" output="false" returntype="any" hint="I map old api parameters to new parameters needed for POSTing a new employee record">
       <cfargument name="params" type="struct" required="true" />
       <cfset local = {} />
@@ -873,109 +913,118 @@ return {
       <cfset local.results.error = "" />
       <cftry>
          <cfscript>
-            employee_info={};
-            hiring_manager_info={};
-            questionnaire={};
-            voc_rehab_info={};
-            unemployment_info={};
-            veteran_info={};
-            foodstamps_recipient_info={};
-            esign={};
-            afdc_recipient_info={}; 
+            var rt = getRetroTaxStruct();
+
 
             /*HIRING MANAGER SECTION */
-            if(structkeyexists(params,"OCCUPATIONID")){hiring_manager_info['occupation_id']=params['OCCUPATIONID'];}
-            if(structkeyexists(params,"DGI")){hiring_manager_info['dgi']=DateFormat(params['DGI'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"DOB")){hiring_manager_info['dob']=DateFormat(params['DOB'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"DOH")){hiring_manager_info['doh']=DateFormat(params['DOH'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"DOJO")){hiring_manager_info['dojo']=DateFormat(params['DOJO'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"DSW")){hiring_manager_info['dsw']=DateFormat(params['DSW'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"STARTINGWAGE")){hiring_manager_info['starting_wage']=params['STARTINGWAGE'];}
+            if(structkeyexists(params,"OCCUPATIONID")){rt.hiring_manager_info['occupation_id']=params['OCCUPATIONID'];}
+            if(structkeyexists(params,"DGI")){rt.hiring_manager_info['dgi']=DateFormat(params['DGI'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"DOB")){rt.hiring_manager_info['dob']=DateFormat(params['DOB'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"DOH")){rt.hiring_manager_info['doh']=DateFormat(params['DOH'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"DOJO")){rt.hiring_manager_info['dojo']=DateFormat(params['DOJO'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"DSW")){rt.hiring_manager_info['dsw']=DateFormat(params['DSW'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"STARTINGWAGE")){rt.hiring_manager_info['starting_wage']=params['STARTINGWAGE'];}
+
 
             /*Employee Info */
-            if(structkeyexists(params,"LASTNAME")){employee_info['last_name']=params['LASTNAME'];}
-            if(structkeyexists(params,"ZIP")){employee_info['zip']=params['ZIP'];}
-            if(structkeyexists(params,"STATE")){employee_info['state']=params['STATE'];}
-            if(structkeyexists(params,"SSN")){employee_info['ssn']=ReReplaceNoCase(params['SSN'],"[^0-9,]","","ALL");}
-            if(structkeyexists(params,"REHIRE")){employee_info['rehire']=TrueFalseFormat(params['REHIRE']);}
-            if(structkeyexists(params,"FIRSTNAME")){employee_info['first_name']=params['FIRSTNAME'];}
-            if(structkeyexists(params,"DOB")){employee_info['dob']=DateFormat(params['DOB'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"CITY")){employee_info['city']=params['CITY'];}
-            if(structkeyexists(params,"ADDRESS")){employee_info['address_line_1']=params['ADDRESS'];}
-            if(structkeyexists(params,"ADDRESS2")){employee_info['address_line_2']=params['ADDRESS2'];}
-            if(structkeyexists(params,"COMPANYID")){employee_info['company_id']=params['COMPANYID'];}
-            if(structkeyexists(params,"LOCATIONID")){employee_info['location_id']=params['LOCATIONID'];}
-            if(structkeyexists(params,"SUFFIX")){employee_info['suffix']=params['SUFFIX'];}
+            if(structkeyexists(params,"LASTNAME")){rt.employee_info['last_name']=params['LASTNAME'];}
+            if(structkeyexists(params,"ZIP")){rt.employee_info['zip']=params['ZIP'];}
+            if(structkeyexists(params,"STATE")){rt.employee_info['state']=params['STATE'];}
+            if(structkeyexists(params,"SSN")){rt.employee_info['ssn']=ReReplaceNoCase(params['SSN'],"[^0-9,]","","ALL");}
+            if(structkeyexists(params,"REHIRE")){rt.employee_info['rehire']=TrueFalseFormat(params['REHIRE']);}
+            if(structkeyexists(params,"FIRSTNAME")){rt.employee_info['first_name']=params['FIRSTNAME'];}
+            if(structkeyexists(params,"DOB")){rt.employee_info['dob']=DateFormat(params['DOB'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"CITY")){rt.employee_info['city']=params['CITY'];}
+            if(structkeyexists(params,"ADDRESS")){rt.employee_info['address_line_1']=params['ADDRESS'];}
+            if(structkeyexists(params,"ADDRESS2")){rt.employee_info['address_line_2']=params['ADDRESS2'];}
+            if(structkeyexists(params,"LOCATIONID")){rt.employee_info['location_id']=params['LOCATIONID'];}
+            if(structkeyexists(params,"SUFFIX")){rt.employee_info['suffix']=params['SUFFIX'];}
+
 
             /*QUESTIONAIRE*/
-            if(structkeyexists(params,"FELON")){questionnaire['felon']=TrueFalseFormat(params['FELON']);}
-            if(structkeyexists(params,"CAFOSTER")){questionnaire['ca_foster']=TrueFalseFormat(params['CAFOSTER']);}
-            if(structkeyexists(params,"CAMISDEMEANOR")){questionnaire['ca_misdemeanor']=TrueFalseFormat(params['CAMISDEMEANOR']);}
-            if(structkeyexists(params,"FOODSTAMPS")){questionnaire['food_stamps']=TrueFalseFormat(params['FOODSTAMPS']);}
-            if(structkeyexists(params,"SSI")){questionnaire['ssi']=TrueFalseFormat(params['SSI']);}
-            if(structkeyexists(params,"VOCREHAB")){questionnaire['voc_rehab']=TrueFalseFormat(params['VOCREHAB']);}
-            if(structkeyexists(params,"AFDC")){questionnaire['afdc']=TrueFalseFormat(params['AFDC']);}
-            if(structkeyexists(params,"CDIB")){questionnaire['cdib']=TrueFalseFormat(params['CDIB']);}
-            if(structkeyexists(params,"CAFARMER")){questionnaire['ca_farmer']=TrueFalseFormat(params['CAFARMER']);}
-            if(structkeyexists(params,"UNEMPLOYED")){questionnaire['unemployed']=TrueFalseFormat(params['UNEMPLOYED']);}
-            if(structkeyexists(params,"CAFARMER")){questionnaire['ca_farmer']=TrueFalseFormat(params['CAFARMER']);}
-            if(structkeyexists(params,"CAWIA")){questionnaire['ca_wia']=TrueFalseFormat(params['CAWIA']);}
-            if(structkeyexists(params,"SCFIB")){questionnaire['sc_fib']=TrueFalseFormat(params['SCFIB']);}
-            if(structkeyexists(params,"VETERAN")){questionnaire['veteran']=TrueFalseFormat(params['VETERAN']);}
-            if(structkeyexists(params,"CACALWORKS")){questionnaire['ca_calworks']=TrueFalseFormat(params['CACALWORKS']);}
+            if(structkeyexists(params,"FELON")){rt.questionnaire['felon']=TrueFalseFormat(params['FELON']);}
+            if(structkeyexists(params,"CAFOSTER")){rt.questionnaire['ca_foster']=TrueFalseFormat(params['CAFOSTER']);}
+            if(structkeyexists(params,"CAMISDEMEANOR")){rt.questionnaire['ca_misdemeanor']=TrueFalseFormat(params['CAMISDEMEANOR']);}
+            if(structkeyexists(params,"FOODSTAMPS")){rt.questionnaire['food_stamps']=TrueFalseFormat(params['FOODSTAMPS']);}
+            if(structkeyexists(params,"SSI")){rt.questionnaire['ssi']=TrueFalseFormat(params['SSI']);}
+            if(structkeyexists(params,"VOCREHAB")){rt.questionnaire['voc_rehab']=TrueFalseFormat(params['VOCREHAB']);}
+            if(structkeyexists(params,"AFDC")){rt.questionnaire['afdc']=TrueFalseFormat(params['AFDC']);}
+            if(structkeyexists(params,"CDIB")){rt.questionnaire['cdib']=TrueFalseFormat(params['CDIB']);}
+            if(structkeyexists(params,"CAFARMER")){rt.questionnaire['ca_farmer']=TrueFalseFormat(params['CAFARMER']);}
+            if(structkeyexists(params,"UNEMPLOYED")){rt.questionnaire['unemployed']=TrueFalseFormat(params['UNEMPLOYED']);}
+            if(structkeyexists(params,"CAFARMER")){rt.questionnaire['ca_farmer']=TrueFalseFormat(params['CAFARMER']);}
+            if(structkeyexists(params,"CAWIA")){rt.questionnaire['ca_wia']=TrueFalseFormat(params['CAWIA']);}
+            if(structkeyexists(params,"SCFIB")){rt.questionnaire['sc_fib']=TrueFalseFormat(params['SCFIB']);}
+            if(structkeyexists(params,"VETERAN")){rt.questionnaire['veteran']=TrueFalseFormat(params['VETERAN']);}
+            if(structkeyexists(params,"CACALWORKS")){rt.questionnaire['ca_cal works']=TrueFalseFormat(params['CACALWORKS']);}
+
 
             /* ESIGN */
-            if(structkeyexists(params,"AUTHORIZATION")){esign['authorization']=TrueFalseFormat(params['AUTHORIZATION']);}
-            if(structkeyexists(params,"ESIGN")){esign['esign']=TrueFalseFormat(params['ESIGN']);}
-            if(structkeyexists(params,"HM_NAME")){esign['hm_name']=params['HM_NAME'];}
-            if(structkeyexists(params,"HM_TITLE")){esign['hm_title']=params['HM_TITLE'];}
+            if(structkeyexists(params,"AUTHORIZATION")){rt.e_signatures.hm_signature['authorization']=TrueFalseFormat(params['AUTHORIZATION']);}
+            if(structkeyexists(params,"ESIGN")){rt.e_signatures.hm_signature['esign']=TrueFalseFormat(params['ESIGN']);}
+            if(structkeyexists(params,"HM_NAME")){rt.e_signatures.hm_signature['hm_name']=params['HM_NAME'];}
+            if(structkeyexists(params,"HM_TITLE")){rt.e_signatures.hm_signature['hm_title']=params['HM_TITLE'];}
+
 
             /* VOC REHAB */
-            if(structkeyexists(params,"VOCREHABINFO_ADDRESS")){voc_rehab_info['address_1']=params['VOCREHABINFO_ADDRESS'];}
-            if(structkeyexists(params,"VOCREHABINFO_ADDRESS2")){voc_rehab_info['address_2']=params['VOCREHABINFO_ADDRESS2'];}
-            if(structkeyexists(params,"VOCREHABINFO_AGENCY")){voc_rehab_info['agency_name']=params['VOCREHABINFO_AGENCY'];}
-            if(structkeyexists(params,"VOCREHABINFO_CITY")){voc_rehab_info['city']=params['VOCREHABINFO_CITY'];}
-            if(structkeyexists(params,"VOCREHABINFO_COUNTY")){voc_rehab_info['county']=params['VOCREHABINFO_COUNTY'];}
-            if(structkeyexists(params,"VOCREHABINFO_PHONE")){voc_rehab_info['phone']=params['VOCREHABINFO_PHONE'];}
-            if(structkeyexists(params,"VOCREHABINFO_STATE")){voc_rehab_info['state']=params['VOCREHABINFO_STATE'];}
-            if(structkeyexists(params,"VOCREHABINFO_ZIP")){voc_rehab_info['zip']=params['VOCREHABINFO_ZIP'];}
-            if(structkeyexists(params,"TTW")){voc_rehab_info['ttw']=TrueFalseFormat(params['TTW']);}
-            if(structkeyexists(params,"DEPTVA")){voc_rehab_info['received_from_vet_dept']=TrueFalseFormat(params['DEPTVA']);}
-            if(structkeyexists(params,"VOCREHABAGENCY")){voc_rehab_info['received_from_agency']=TrueFalseFormat(params['VOCREHABAGENCY']);}
+            if(structkeyexists(params,"VOCREHABINFO_ADDRESS")){voc_rehab_info['address_line_1']=params['VOCREHABINFO_ADDRESS'];}
+            if(structkeyexists(params,"VOCREHABINFO_ADDRESS2")){rt.voc_rehab_info['address_line_2']=params['VOCREHABINFO_ADDRESS2'];}
+            if(structkeyexists(params,"VOCREHABINFO_AGENCY")){rt.voc_rehab_info['agency_name']=params['VOCREHABINFO_AGENCY'];}
+            if(structkeyexists(params,"VOCREHABINFO_CITY")){rt.voc_rehab_info['city']=params['VOCREHABINFO_CITY'];}
+            if(structkeyexists(params,"VOCREHABINFO_COUNTY")){rt.voc_rehab_info['county']=params['VOCREHABINFO_COUNTY'];}
+            if(structkeyexists(params,"VOCREHABINFO_PHONE")){rt.voc_rehab_info['phone']=params['VOCREHABINFO_PHONE'];}
+            if(structkeyexists(params,"VOCREHABINFO_STATE")){rt.voc_rehab_info['state']=params['VOCREHABINFO_STATE'];}
+            if(structkeyexists(params,"VOCREHABINFO_ZIP")){rt.voc_rehab_info['zip']=params['VOCREHABINFO_ZIP'];}
+            if(structkeyexists(params,"TTW")){rt.voc_rehab_info['ttw']=TrueFalseFormat(params['TTW']);}
+            if(structkeyexists(params,"DEPTVA")){rt.voc_rehab_info['dept_va']=TrueFalseFormat(params['DEPTVA']);}
+            if(structkeyexists(params,"VOCREHABAGENCY")){rt.voc_rehab_info['is_agency']=TrueFalseFormat(params['VOCREHABAGENCY']);}
+
+
+            if((structkeyexists(params,"VOCREHAB") && rt.questionnaire['voc_rehab']) &&
+               (!rt.voc_rehab_info['ttw'] && !rt.voc_rehab_info['dept_va'] && !rt.voc_rehab_info['is_agency'])){
+               rt.voc_rehab_info['is_agency']='true';}
+
 
             /* AFDC */
             if(structkeyexists(params,"AFDC") && params.afdc){
-               if(structkeyexists(params,"RECIPIENT_CITYRECEIVED")){afdc_recipient_info['city_received']=params['RECIPIENT_CITYRECEIVED'];}
-               if(structkeyexists(params,"RECIPIENT_COUNTYRECEIVED")){afdc_recipient_info['county_received']=params['RECIPIENT_COUNTYRECEIVED'];}
-               if(structkeyexists(params,"RECIPIENT_NAME")){afdc_recipient_info['name']=params['RECIPIENT_NAME'];}
-               if(structkeyexists(params,"RECIPIENT_RELATIONSHIP")){afdc_recipient_info['relationship']=params['RECIPIENT_RELATIONSHIP'];}
-               if(structkeyexists(params,"RECIPIENT_STATERECEIVED")){afdc_recipient_info['state_received']=params['RECIPIENT_STATERECEIVED'];}
+               if(structkeyexists(params,"RECIPIENT_CITYRECEIVED")){rt.afdc_recipient_info['city_received']=params['RECIPIENT_CITYRECEIVED'];}
+               if(structkeyexists(params,"RECIPIENT_COUNTYRECEIVED")){rt.afdc_recipient_info['county_received']=params['RECIPIENT_COUNTYRECEIVED'];}
+               if(structkeyexists(params,"RECIPIENT_NAME")){rt.afdc_recipient_info['name']=params['RECIPIENT_NAME'];}
+               if(structkeyexists(params,"RECIPIENT_RELATIONSHIP")){rt.afdc_recipient_info['relationship']=params['RECIPIENT_RELATIONSHIP'];}
+               if(structkeyexists(params,"RECIPIENT_STATERECEIVED")){rt.afdc_recipient_info['state_received']=params['RECIPIENT_STATERECEIVED'];}
             }
+
 
             /* RECIPIENT */
             if(structkeyexists(params,"FOODSTAMPS") && params.foodstamps){
-               if(structkeyexists(params,"RECIPIENT_CITYRECEIVED")){foodstamps_recipient_info['city_received']=params['RECIPIENT_CITYRECEIVED'];}
-               if(structkeyexists(params,"RECIPIENT_COUNTYRECEIVED")){foodstamps_recipient_info['county_received']=params['RECIPIENT_COUNTYRECEIVED'];}
-               if(structkeyexists(params,"RECIPIENT_NAME")){foodstamps_recipient_info['name']=params['RECIPIENT_NAME'];}
-               if(structkeyexists(params,"RECIPIENT_RELATIONSHIP")){foodstamps_recipient_info['relationship']=params['RECIPIENT_RELATIONSHIP'];}
-               if(structkeyexists(params,"RECIPIENT_STATERECEIVED")){foodstamps_recipient_info['state_received']=params['RECIPIENT_STATERECEIVED'];}
+               if(structkeyexists(params,"RECIPIENT_CITYRECEIVED")){rt.foodstamps_recipient_info['city_received']=params['RECIPIENT_CITYRECEIVED'];}
+               if(structkeyexists(params,"RECIPIENT_COUNTYRECEIVED")){rt.foodstamps_recipient_info['county_received']=params['RECIPIENT_COUNTYRECEIVED'];}
+               if(structkeyexists(params,"RECIPIENT_NAME")){rt.foodstamps_recipient_info['name']=params['RECIPIENT_NAME'];}
+               if(structkeyexists(params,"RECIPIENT_RELATIONSHIP")){rt.foodstamps_recipient_info['relationship']=params['RECIPIENT_RELATIONSHIP'];}
+               if(structkeyexists(params,"RECIPIENT_STATERECEIVED")){rt.foodstamps_recipient_info['state_received']=params['RECIPIENT_STATERECEIVED'];}
             }
             /* FELON */
-            if(structkeyexists(params,"FELONINFO_DATECONVICTION")){felon_info['conviction_date']=DateFormat(params['FELONINFO_DATECONVICTION'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"FELONINFO_DATERELEASE")){felon_info['release_date']=DateFormat(params['FELONINFO_DATERELEASE'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"FELONINFO_ISFEDERALCONVICTION")){felon_info['is_federal_conviction']=TrueFalseFormat(params['FELONINFO_ISFEDERALCONVICTION']);}
-            if(structkeyexists(params,"FELONINFO_ISSTATECONVICTION")){felon_info['is_state_conviction']=TrueFalseFormat(params['FELONINFO_ISSTATECONVICTION']);}
-            if(structkeyexists(params,"FELONINFO_PAROLEOFFICER")){felon_info['parole_officer']=params['FELONINFO_PAROLEOFFICER'];}
-            if(structkeyexists(params,"FELONINFO_PAROLEOFFICERPHONE")){felon_info['parole_officer_phone']=params['FELONINFO_PAROLEOFFICERPHONE'];}
-            if(structkeyexists(params,"FELONINFO_STATEID")){felon_info['felony_state']=params['FELONINFO_STATEID'];}
-            if(structkeyexists(params,"FELONINFO_COUNTYID")){felon_info['felony_county']=params['FELONINFO_COUNTYID'];}
+            if(structkeyexists(params,"FELONINFO_DATECONVICTION")){rt.felon_info['conviction_date']=DateFormat(params['FELONINFO_DATECONVICTION'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"FELONINFO_DATERELEASE")){rt.felon_info['release_date']=DateFormat(params['FELONINFO_DATERELEASE'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"FELONINFO_ISFEDERALCONVICTION")){rt.felon_info['is_federal_conviction']=TrueFalseFormat(params['FELONINFO_ISFEDERALCONVICTION']);}
+            if(structkeyexists(params,"FELONINFO_ISSTATECONVICTION")){rt.felon_info['is_state_conviction']=TrueFalseFormat(params['FELONINFO_ISSTATECONVICTION']);}
+            if(structkeyexists(params,"FELONINFO_PAROLEOFFICER")){rt.felon_info['parole_officer']=params['FELONINFO_PAROLEOFFICER'];}
+            if(structkeyexists(params,"FELONINFO_PAROLEOFFICERPHONE")){rt.felon_info['parole_officer_phone']=params['FELONINFO_PAROLEOFFICERPHONE'];}
+            if(structkeyexists(params,"FELONINFO_STATEID")){rt.felon_info['felony_state']=params['FELONINFO_STATEID'];}
+            if(structkeyexists(params,"FELONINFO_COUNTYID")){rt.felon_info['felony_county']=params['FELONINFO_COUNTYID'];}
+
+
+            if((structkeyexists(params,"FELON") && rt.questionnaire['felon']) &&
+               (!rt.felon_info['is_federal_conviction'] && !rt.felon_info['is_state_conviction'])){
+               rt.felon_info['is_state_conviction']='true';}
+
 
             /*Unemployed*/
-            if(structkeyexists(params,"UNEMPLOYEDSTART")){unemployment_info['unemployment_start_date']=DateFormat(params['UNEMPLOYEDSTART'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"UNEMPLOYEDSTOP")){unemployment_info['unemployment_stop_date']=DateFormat(params['UNEMPLOYEDSTOP'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"COMPENSATEDSTART")){unemployment_info['compensation_start_date']=DateFormat(params['COMPENSATEDSTART'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"COMPENSATEDSTOP")){unemployment_info['compensation_stop_date']=DateFormat(params['COMPENSATEDSTOP'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"COMPENSATED")){unemployment_info['compensatated']=TrueFalseFormat(params['COMPENSATED']);}
+            if(structkeyexists(params,"UNEMPLOYEDSTART")){rt.unemployment_info['unemployment_start_date']=DateFormat(params['UNEMPLOYEDSTART'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"UNEMPLOYEDSTOP")){rt.unemployment_info['unemployment_stop_date']=DateFormat(params['UNEMPLOYEDSTOP'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"COMPENSATEDSTART")){rt.unemployment_info['compensation_start_date']=DateFormat(params['COMPENSATEDSTART'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"COMPENSATEDSTOP")){rt.unemployment_info['compensation_stop_date']=DateFormat(params['COMPENSATEDSTOP'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"COMPENSATED")){rt.unemployment_info['compensated']=TrueFalseFormat(params['COMPENSATED']);}
          
             /*Veteran*/
             if(structkeyexists(params,"VETERANINFO_BRANCHID")){
@@ -1020,24 +1069,13 @@ return {
                      veteran_info['branch']="Army";
                }
             }
-            if(structkeyexists(params,"VETERANINFO_SERVICESTART")){veteran_info['service_start']=DateFormat(params['VETERANINFO_SERVICESTART'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"VETERANINFO_SERVICESTOP")){veteran_info['service_stop']=DateFormat(params['VETERANINFO_SERVICESTOP'],"yyyy-mm-dd");}
-            if(structkeyexists(params,"DISABLED")){veteran_info['disabled']=TrueFalseFormat(params['DISABLED']);}
-            
-            var results={};
-            results['hiring_manager_info']=hiring_manager_info;
-            results['employee_info']=employee_info;
-            results['questionnaire']=questionnaire;
-            results['foodstamps_recipient_info']=foodstamps_recipient_info;
-            results['esign']=esign;
-            results['voc_rehab_info']=voc_rehab_info;
-            results['veteran_info']=veteran_info;
-            results['felon_info']=felon_info;
-            results['afdc_recipient_info']=afdc_recipient_info;
-            results['unemployment_info']=unemployment_info;
-            return results; 
+            if(structkeyexists(params,"VETERANINFO_SERVICESTART")){rt.veteran_info['service_start']=DateFormat(params['VETERANINFO_SERVICESTART'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"VETERANINFO_SERVICESTOP")){rt.veteran_info['service_stop']=DateFormat(params['VETERANINFO_SERVICESTOP'],"yyyy-mm-dd");}
+            if(structkeyexists(params,"DISABLED")){rt.veteran_info['disabled']=TrueFalseFormat(params['DISABLED']);}
+
+
          </cfscript>
-         <cfset local.results = r>
+         <cfset local.results = rt>
          <cfcatch type="any">
             <cfset local.results.error = cfcatch.message & " " & cfcatch.detail />
          </cfcatch>
@@ -1045,12 +1083,12 @@ return {
       <cfreturn local.results />
    </cffunction>
 
+
    <cfscript>
       //source: http://cflib.org/udf/TrueFalseFormat
       function TrueFalseFormat(exp){
-        if (exp) return True;
-        return False;
+        if (exp) return true;
+        return false;
       }
    </cfscript>
 </cfcomponent>
-
