@@ -962,8 +962,8 @@ return {
             /* ESIGN */
             if(structkeyexists(params,"AUTHORIZATION")){rt.e_signatures.hm_signature['authorization']=TrueFalseFormat(params['AUTHORIZATION']);}
             if(structkeyexists(params,"ESIGN")){rt.e_signatures.hm_signature['esign']=TrueFalseFormat(params['ESIGN']);}
-            if(structkeyexists(params,"HM_NAME")){rt.e_signatures.hm_signature['hm_name']=params['HM_NAME'];}
-            if(structkeyexists(params,"HM_TITLE")){rt.e_signatures.hm_signature['hm_title']=params['HM_TITLE'];}
+            if(structkeyexists(params,"HM_NAME")){rt.e_signatures.hm_signature['name']=params['HM_NAME'];}
+            if(structkeyexists(params,"HM_TITLE")){rt.e_signatures.hm_signature['title']=params['HM_TITLE'];}
 
 
             /* VOC REHAB */
