@@ -1025,7 +1025,22 @@ return {
             if(structkeyexists(params,"COMPENSATEDSTART")){rt.unemployment_info['compensation_start_date']=DateFormat(params['COMPENSATEDSTART'],"yyyy-mm-dd");}
             if(structkeyexists(params,"COMPENSATEDSTOP")){rt.unemployment_info['compensation_stop_date']=DateFormat(params['COMPENSATEDSTOP'],"yyyy-mm-dd");}
             if(structkeyexists(params,"COMPENSATED")){rt.unemployment_info['compensated']=TrueFalseFormat(params['COMPENSATED']);}
-         
+
+            if(structkeyexists(params,"UNEMPLOYED") && rt.questionnaire['unemployed']){
+               if(isDate(rt.unemployment_info['unemployment_stop_date']) && (DateCompare(rt.unemployment_info['unemployment_stop_date'], rt.hiring_manager_info['dsw'],"d") eq 1)){
+                  rt.unemployment_info['unemployment_stop_date']=rt.hiring_manager_info['dsw'];
+               }
+               if(rt.unemployment_info['compensated'] && isDate(rt.unemployment_info['compensation_stop_date']) && (DateCompare(rt.unemployment_info['compensation_stop_date'], rt.hiring_manager_info['dsw'],"d") eq 1)){
+                  rt.unemployment_info['compensation_stop_date']=rt.hiring_manager_info['dsw'];
+               }
+               if(isDate(rt.unemployment_info['unemployment_start_date']) && (DateCompare(rt.unemployment_info['unemployment_start_date'], rt.hiring_manager_info['dsw'],"d") eq 1)){
+                  rt.unemployment_info['unemployment_start_date']=rt.hiring_manager_info['dsw'];
+               }
+               if(rt.unemployment_info['compensated'] && isDate(rt.unemployment_info['compensation_start_date']) && (DateCompare(rt.unemployment_info['compensation_start_date'], rt.hiring_manager_info['dsw'],"d") eq 1)){
+                  rt.unemployment_info['compensation_start_date']=rt.hiring_manager_info['dsw'];
+               }
+            }
+
             /*Veteran*/
             if(structkeyexists(params,"VETERANINFO_BRANCHID")){
                switch(params['VETERANINFO_BRANCHID']){
@@ -1073,6 +1088,15 @@ return {
             if(structkeyexists(params,"VETERANINFO_SERVICESTOP")){rt.veteran_info['service_stop']=DateFormat(params['VETERANINFO_SERVICESTOP'],"yyyy-mm-dd");}
             if(structkeyexists(params,"DISABLED")){rt.veteran_info['disabled']=TrueFalseFormat(params['DISABLED']);}
 
+            if(structkeyexists(params,"VETERAN") && rt.questionnaire['veteran']){
+               if(isDate(rt.veteran_info['service_stop']) && (DateCompare(rt.veteran_info['service_stop'], rt.hiring_manager_info['dsw'],"d") eq 1)){
+                  rt.veteran_info['service_stop']=rt.hiring_manager_info['dsw'];
+               }
+               if(isDate(rt.veteran_info['service_start']) && (DateCompare(rt.veteran_info['service_start'], rt.hiring_manager_info['dsw'],"d") eq 1)){
+                  rt.veteran_info['service_start']=rt.hiring_manager_info['dsw'];
+               }
+            }
+            
 
          </cfscript>
          <cfset local.results = rt>
